@@ -17,3 +17,10 @@ updates:
     versioning-strategy: "increase"
     commit-message:
       prefix: "chore"
+    # Peers of each other: one arriving alone cannot install, so they travel
+    # together or the branch fails before it reaches a gate.
+    groups:
+      vitest:
+        patterns: ["vitest", "@vitest/*"]
+      eslint:
+        patterns: ["eslint", "@eslint/*", "typescript-eslint", "eslint-plugin-*"]
