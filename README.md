@@ -9,6 +9,8 @@ scroll position, a selection, text typed into a panel but not yet sent.
 Each sidebar has its own layouts and its own active one, so switching on one side leaves the other
 side and its live views alone.
 
+![Switching between saved layouts of the right sidebar](.github/assets/switching-layouts.gif)
+
 Source:
 [mrkhachaturov/obsidian-sidebar-layouts](https://github.com/mrkhachaturov/obsidian-sidebar-layouts).
 
@@ -39,9 +41,16 @@ Source:
 
 ## 1 Installation
 
-- **BRAT** - add `mrkhachaturov/obsidian-sidebar-layouts` in the BRAT plugin.
-- **By hand** - copy `main.js`, `manifest.json` and `styles.css` into
-  `<vault>/.obsidian/plugins/sidebar-layouts/`, then enable it under Community plugins.
+Not in Obsidian's community plugin browser yet: a plugin is submitted there after its first release,
+and appears once that submission has been reviewed. Until then, either route below installs it.
+
+- **BRAT** - install [BRAT](https://github.com/TfTHacker/obsidian42-brat), then add
+  `mrkhachaturov/obsidian-sidebar-layouts` to it. It installs the latest release and follows the
+  ones after it.
+- **By hand** - download `main.js`, `manifest.json` and `styles.css` from the
+  [latest release](https://github.com/mrkhachaturov/obsidian-sidebar-layouts/releases/latest), put
+  them in `<vault>/.obsidian/plugins/sidebar-layouts/`, then enable the plugin under Settings →
+  Community plugins.
 
 Requires Obsidian 1.13.0 or later.
 
