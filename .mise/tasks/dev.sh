@@ -3,4 +3,4 @@
 #MISE dir="{{config_root}}"
 set -euo pipefail
 
-exec node esbuild.config.mjs
+exec npm run --silent dev
