@@ -1,10 +1,14 @@
 # Sidebar Layouts
 
-Save named arrangements of the left and right sidebars and switch between them with one button.
+A sidebar holds one arrangement at a time. You can split it by hand, but there is only ever one, and
+getting another means taking that one apart.
 
-A layout holds which panel is on top, what is stacked below it and at what heights. Switching moves
-the panels that are already open instead of rebuilding them, so each one keeps what it holds - a
-scroll position, a selection, text typed into a panel but not yet sent.
+This keeps as many as you name. An AI chat at full height for one task. The same sidebar split three
+ways for another - backlinks, outline, tags, at the heights you set. A third with two panels. Each
+arrangement becomes a button in the sidebar's own header, and switching is one click.
+
+Switching moves the panels that are already open instead of rebuilding them, so each one keeps what
+it holds - a scroll position, a selection, text typed into a panel but not yet sent.
 
 Each sidebar has its own layouts and its own active one, so switching on one side leaves the other
 side and its live views alone.
@@ -67,8 +71,11 @@ from, and mobile does not have that sidebar.
 
 ## 3 What a layout holds
 
+The whole arrangement, not a single panel:
+
 - **The top panel** - the panel revealed in the sidebar's upper group.
-- **The panels below** - which panels are stacked underneath, and in what order.
+- **The panels below** - which panels are stacked underneath, and in what order. None, one, or
+  several: a layout can be one panel taking the full height, or three sharing it.
 - **Their heights** - kept as a share of the sidebar, so a layout fits whatever width it is given.
 
 The upper group stays in place, which is what lets a live panel survive the switch. Groups below it
