@@ -52,7 +52,8 @@ and appears once that submission has been reviewed. Until then, either route bel
   them in `<vault>/.obsidian/plugins/sidebar-layouts/`, then enable the plugin under Settings →
   Community plugins.
 
-Requires Obsidian 1.13.0 or later.
+Requires Obsidian 1.13.0 or later, on desktop. The plugin rearranges the panes a sidebar is built
+from, and mobile does not have that sidebar.
 
 ## 2 Getting started
 
