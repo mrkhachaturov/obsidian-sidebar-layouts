@@ -177,7 +177,30 @@ describe('reading stored settings', () => {
       fc.property(stored, (raw) => {
         checkData(readData(raw));
       }),
-      { numRuns: 1000 },
+      {
+        numRuns: 1000,
+        /* Found by this test: an empty name and icon reached the button row,
+         * where they draw nothing and read out as nothing. */
+        examples: [
+          [
+            {
+              buttons: [
+                {
+                  id: 'a',
+                  side: 'left',
+                  placement: 'header',
+                  showWhenCollapsed: false,
+                  visible: false,
+                  name: '',
+                  icon: '',
+                  kind: 'command',
+                  commandId: 'app:open-settings',
+                },
+              ],
+            },
+          ],
+        ],
+      },
     );
   });
 

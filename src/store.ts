@@ -21,8 +21,11 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+/* An empty string is not a usable name or icon - it draws a button with nothing
+ * on it and nothing to read out - so it takes the default the same as an absent
+ * value does. Found by the property tests, not by hand. */
 function str(value: unknown, fallback: string): string {
-  return typeof value === 'string' ? value : fallback;
+  return typeof value === 'string' && value.length > 0 ? value : fallback;
 }
 
 function bool(value: unknown, fallback: boolean): boolean {
