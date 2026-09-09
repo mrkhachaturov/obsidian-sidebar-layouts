@@ -1,0 +1,44 @@
+{
+  "name": "obsidian-sidebar-layouts",
+  "version": "0.1.0",
+  "description": "Named arrangements for the Obsidian right sidebar.",
+  "author": "Ruben Khachaturov (https://github.com/mrkhachaturov)",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrkhachaturov/obsidian-sidebar-layouts.git"
+  },
+  "scripts": {
+    "dev": "mise run dev",
+    "build": "mise run build",
+    "test": "mise run test:unit",
+    "test:watch": "vitest",
+    "postinstall": "node scripts/patch-dependencies.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/node": "24.13.3",
+    "@vitest/coverage-v8": "4.1.11",
+    "builtin-modules": "5.3.0",
+    "esbuild": "0.28.2",
+    "eslint": "9.39.5",
+    "eslint-plugin-obsidianmd": "0.4.2",
+    "globals": "17.12.0",
+    "jsdom": "30.0.1",
+    "knip": "6.35.0",
+    "obsidian": "1.13.1",
+    "tslib": "2.8.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.0",
+    "vitest": "4.1.11"
+  },
+  "dependencies": {
+    "@dnd-kit/dom": "0.5.0",
+    "@dnd-kit/react": "0.5.0",
+    "preact": "10.28.4",
+    "react": "npm:@preact/compat@18.3.2",
+    "react-dom": "npm:@preact/compat@18.3.2"
+  }
+}

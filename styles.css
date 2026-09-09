@@ -1,0 +1,250 @@
+/*
+ * Sidebar Layouts - Plugin for Obsidian
+ * Copyright (c) 2026 Ruben Khachaturov
+ * SPDX-License-Identifier: MIT
+ */
+
+.sl-button {
+  border: 0;
+  padding: var(--size-2-2);
+  box-shadow: none;
+  color: inherit;
+  background: transparent;
+  align-self: center;
+  flex: 0 0 auto;
+
+  /* Matches the native tab strip's gap. Can't set `gap` on the container - it
+     is Obsidian's, and holds the collapse toggle too. */
+  margin-left: 3px;
+}
+
+/* `is-active` is Obsidian's token, so themes stay in charge. */
+.sl-button.is-active {
+  color: var(--text-accent);
+  background-color: var(--background-modifier-hover);
+}
+
+/* --------------------------------------------------------- icon picker -- */
+
+.sl-icon-row {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+
+.sl-icon-preview {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.sl-icon-preview-large {
+  display: flex;
+  align-items: center;
+  margin-right: var(--size-4-2);
+  color: var(--text-normal);
+}
+
+/* ---------------------------------------------------------- manage list -- */
+
+.sl-manage-row {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+  padding: var(--size-2-2) 0;
+}
+
+.sl-manage-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.sl-manage-name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sl-manage-footer {
+  display: flex;
+  gap: var(--size-4-2);
+  margin-top: var(--size-4-4);
+}
+
+.sl-manage-empty {
+  padding: var(--size-4-4) 0;
+  color: var(--text-muted);
+}
+
+.sl-manage-handle {
+  flex: 0 0 auto;
+  cursor: grab;
+  touch-action: none;
+}
+
+.sl-manage-dragging {
+  opacity: 0.5;
+}
+
+.sl-manage-action {
+  flex: 0 0 auto;
+}
+
+.sl-manage-footer {
+  flex-wrap: wrap;
+}
+
+.sl-manage-error {
+  color: var(--text-error);
+}
+
+.sl-manage-modal {
+  width: min(680px, 100%);
+}
+
+.sl-manage-editor,
+.sl-manage-list {
+  min-width: 0;
+}
+
+.sl-manage-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sl-manage-target {
+  background-color: var(--background-modifier-hover);
+}
+
+.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header.sl-managed-tab-hidden {
+  display: none;
+}
+
+/* Settings preview uses the same visible order as the sidebar button row. */
+.sl-settings-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--size-4-2);
+  padding: var(--size-4-2) var(--size-4-3);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+  min-height: 36px;
+}
+
+.sl-settings-preview-icon {
+  display: inline-flex;
+  color: var(--text-muted);
+}
+
+.sl-settings-preview-empty,
+.sl-manage-description,
+.sl-manage-meta {
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
+
+.sl-manage-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: var(--size-2-1);
+}
+
+.sl-manage-details .sl-manage-name {
+  width: 100%;
+}
+
+.sl-save-layout-summary {
+  margin-bottom: var(--size-4-4);
+  color: var(--text-muted);
+}
+
+.sl-save-layout-error {
+  color: var(--text-error);
+}
+
+/* Header buttons follow the native toggle; panel buttons stay below tabs. */
+.sl-button-strip {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.sl-header-buttons {
+  align-self: center;
+  flex: 0 0 auto;
+  min-width: max-content;
+  /* Match the 3px spacing inside the native tab strip at our outer edges too. */
+  margin-inline: 3px;
+  -webkit-app-region: no-drag;
+}
+
+.sl-header-buttons:first-child {
+  margin-inline-start: 0;
+}
+
+/* Native tabs give up space before our header buttons on either side. */
+.workspace-tab-header-container:has(> .sl-header-buttons) > .workspace-tab-header-container-inner {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.workspace-tab-header-container:has(> .sl-header-buttons)
+  > .workspace-tab-header-container-inner
+  > .workspace-tab-header {
+  flex-shrink: 0;
+}
+
+/* The left strip covers tabs from the opposite edge to the right strip. */
+.workspace-tab-header-container:has(> .sl-header-buttons[data-side="left"])
+> .workspace-tab-header-container-inner {
+  justify-content: flex-end;
+}
+
+.sl-panel-buttons {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: var(--size-2-1) var(--size-4-2);
+}
+
+.sl-button-strip .sl-button,
+.sl-overflow {
+  flex: 0 0 auto;
+  min-width: 28px;
+  min-height: 28px;
+  margin: 0;
+}
+
+.sl-button-strip .sl-button[hidden] {
+  display: none;
+}
+
+.sl-settings-actions {
+  flex-wrap: wrap;
+  gap: var(--size-4-2);
+}
+
+.sl-settings-actions .setting-item-control {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: var(--size-4-2);
+}
+
+.sl-settings-preview-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--size-4-2);
+  flex-basis: 100%;
+}
+
+.sl-settings-preview-label {
+  flex-basis: 100%;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}

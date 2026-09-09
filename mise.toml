@@ -1,0 +1,54 @@
+min_version = "2026.8.8"
+
+[settings]
+lockfile = true
+
+[env]
+_.path = ["{{config_root}}/node_modules/.bin"]
+HK_MISE = 1
+
+[task_config]
+includes = [".mise/tasks"]
+
+[hooks]
+enter = ["mise install"]
+postinstall = "hk install --mise"
+
+# Owned by flint: `flint run --fix flint-setup` rewrites this table.
+[tools]
+hk = "1.58.1"
+node = "24.20.0"
+
+"npm:doctoc" = "2.5.0"
+
+# Linters
+actionlint = "1.7.12"
+"aqua:grafana/flint" = "0.22.11"
+"aqua:owenlamont/ryl" = "0.22.0"
+biome = "2.5.12"
+rumdl = "0.2.68"
+shellcheck = "0.11.0"
+taplo = "0.10.0"
+zizmor = "1.30.0"
+
+[tasks.lint]
+description = "Every generic file type, including TypeScript and CSS"
+run = "flint run --full"
+
+[tasks.fmt]
+description = "Apply the fixes supported by flint"
+run = "flint run --full --fix --allow-fixed"
+
+[tasks.check]
+description = "Lint, types, coverage, dead code, styles, and production build"
+# build depends on test:types, so the compiler runs once.
+depends = [
+  "lint",
+  "lint:code",
+  "test:coverage",
+  "lint:docs",
+  "test:dead",
+  "test:release",
+  "test:styles",
+  "build",
+]

@@ -1,0 +1,19 @@
+---
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "chore"
+
+  # The ceiling is what the Obsidian ecosystem supports, not npm's latest, so a
+  # bump is read before it is merged.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    versioning-strategy: "increase"
+    commit-message:
+      prefix: "chore"

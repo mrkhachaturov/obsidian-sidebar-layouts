@@ -1,0 +1,12 @@
+[settings]
+exclude = [
+  # Prose with deliberate line breaks; a markdown fixer reflows them into a
+  # different document.
+  "AGENTS.md",
+  "CHANGELOG.md",
+  # biome ignores lock files internally, so handing it this one fails the run
+  # with "no files were processed" rather than formatting anything.
+  "package-lock.json",
+  # Build output.
+  "main.js",
+]

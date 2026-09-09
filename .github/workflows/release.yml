@@ -1,0 +1,81 @@
+---
+name: Draft release
+
+# Manual only. Every run drafts; publishing the draft is what releases, and the
+# tag is created from the manifest at that moment, so no tag is ever typed.
+"on":
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write  # drafts the release
+      id-token: write  # signs the attestation
+      attestations: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c  # v4.3.0
+        with:
+          version: 2026.9.3
+          cache: false  # zizmor cache-poisoning: a publishing run restores nothing
+      - name: Install locked dependencies
+        run: mise run bootstrap
+
+      - name: Check the version against the changelog and the release files
+        run: mise run test:release
+
+      - name: Read the version being released
+        id: release
+        run: mise run test:release --version >> "$GITHUB_OUTPUT"
+
+      - name: Run every gate
+        run: mise run check
+
+      - name: Collect the release notes
+        run: mise run test:release --notes > release-notes.md
+
+      # Provenance for the three files Obsidian installs.
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8  # v4.2.2
+        with:
+          subject-path: |
+            main.js
+            manifest.json
+            styles.css
+
+      # A published release of this version is what people already have; only a
+      # draft from an earlier run of this workflow may be replaced.
+      - name: Replace an earlier draft of the same version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          state=$(gh release view "$VERSION" --json isDraft --jq .isDraft \
+            2>/dev/null || echo absent)
+          case "$state" in
+            absent) ;;
+            true) gh release delete "$VERSION" --yes ;;
+            *) echo "$VERSION is already published"; exit 1 ;;
+          esac
+
+      - name: Draft the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          gh release create "$VERSION" \
+            --draft \
+            --target "$GITHUB_SHA" \
+            --title "$VERSION" \
+            --notes-file release-notes.md \
+            main.js manifest.json styles.css

@@ -1,0 +1,14 @@
+node_modules/
+coverage/
+.rumdl_cache/
+
+# Working notes for this repository. Written for whoever is building the plugin,
+# not for the people installing it.
+notes/
+
+# Build output. Obsidian loads it, the release workflow attaches it, but it is
+# generated from src/ and never edited by hand - so it does not belong in git.
+main.js
+main.js.map
+
+.DS_Store

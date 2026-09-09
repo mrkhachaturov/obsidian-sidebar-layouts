@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": ["tests/**/*.test.ts", "tests/**/*.test.tsx", "scripts/*.mjs"],
+  "project": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx", "scripts/*.mjs"],
+  "ignoreExportsUsedInFile": {
+    "interface": true,
+    "type": true,
+    "enum": true
+  },
+  "rules": {
+    "files": "error",
+    "exports": "error",
+    "types": "off",
+    "nsTypes": "off",
+    "enumMembers": "off",
+    "duplicates": "off",
+    "unlisted": "error",
+    "unresolved": "error"
+  },
+  "ignoreBinaries": ["mise"]
+}
