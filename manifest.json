@@ -3,7 +3,7 @@
   "name": "Sidebar Layouts",
   "version": "0.1.1",
   "minAppVersion": "1.13.0",
-  "description": "Save named arrangements of the left and right sidebars. A button restores which panel is on top, what is stacked below and at what heights, without recreating the panels or touching the open note.",
+  "description": "Keep several arrangements of a sidebar: three panels stacked for one task, a single full-height panel for another, switched with one button.",
   "author": "Ruben Khachaturov",
   "authorUrl": "https://github.com/mrkhachaturov",
   "isDesktopOnly": true
