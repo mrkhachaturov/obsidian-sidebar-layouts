@@ -24,11 +24,20 @@ async function json(name) {
   return JSON.parse(await fs.readFile(path.join(root, name), 'utf8'));
 }
 
-/** The lines under `## [version] - date`, up to the next section. */
+const DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+/**
+ * The lines under `## [version] - date`, up to the next section.
+ *
+ * Compared as text rather than through a regular expression built from the
+ * version: escaping a value into a pattern is a sanitizer, and a sanitizer that
+ * misses one metacharacter is a bug this file does not need to have.
+ */
 function section(changelog, version) {
-  const heading = new RegExp(`^## \\[${version.replace(/\./g, '\\.')}\\] - (\\d{4}-\\d{2}-\\d{2})$`);
+  const prefix = `## [${version}] - `;
+  const isHeading = (line) => line.startsWith(prefix) && DATE.test(line.slice(prefix.length));
   const lines = changelog.split('\n');
-  const start = lines.findIndex((line) => heading.test(line));
+  const start = lines.findIndex(isHeading);
   if (start < 0) return null;
   const rest = lines.slice(start + 1);
   const end = rest.findIndex((line) => line.startsWith('## '));
