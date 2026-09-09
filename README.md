@@ -137,8 +137,11 @@ brings them back at their stored heights.
 Every layout can register a command of its own, named after the layout - the **Add to the command
 palette** toggle on its page. Turning it off removes the command and keeps the button.
 
-Because a layout is an ordinary command, anything that runs commands can switch layouts: a hotkey,
-a command launcher, or a rule that reacts to what you open.
+Because a layout is an ordinary command, anything that runs commands can switch layouts: a hotkey, a
+command launcher, or a rule that reacts to what you open.
+[Triggers](https://github.com/mrkhachaturov/obsidian-triggers) is the last of those — it runs
+commands when you open a note, a Base or a canvas that matches a rule you wrote, so the sidebar can
+rebuild itself around what is in front of you.
 
 | Command ID | Command name |
 | --- | --- |
