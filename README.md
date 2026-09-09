@@ -80,6 +80,9 @@ A button belongs to one sidebar and does one of two things: apply a layout, or r
 your vault. **Save current layout** and **Add command** create them; **Edit buttons** renames and
 reorders them, by dragging or with the keyboard.
 
+![The settings page for the right sidebar, with its buttons and a preview of where they
+sit](.github/assets/right-sidebar-settings.png)
+
 - **Button position** - **In the window header** keeps the button visible while the sidebar is
   open, and the native tabs yield space as the sidebar narrows. Left buttons sit at the left edge,
   right buttons beside the right sidebar toggle. **Below panel tabs** puts them in a row of their
@@ -93,7 +96,11 @@ reorders them, by dragging or with the keyboard.
   keeps its tab.
 - **Show tooltips** - shows the button's name on hover.
 
-The last two apply to both sidebars; the rest belong to one button.
+The last two apply to both sidebars; the rest belong to one button. Each button has a page of its
+own, which is also where a layout is applied and where the two options below live.
+
+![The page of a single layout button: its name, icon, position, and the layout
+options](.github/assets/layout-button-settings.png)
 
 ## 5 Saved and working layouts
 
