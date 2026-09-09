@@ -29,6 +29,18 @@ release where those four disagree.
 
 ## Unreleased
 
+## [0.1.1] - 2026-09-09
+
+### Changed
+
+- The plugin builds with npm alone, so the community directory can reproduce the released files.
+- One fewer dependency: the list of Node's built-in modules comes from Node itself.
+
+### Fixed
+
+- The buttons in the window header no longer make Obsidian re-evaluate the tab strip's styles every
+  time a tab is opened, closed or dragged.
+
 ## [0.1.0] - 2026-09-09
 
 ### Added
