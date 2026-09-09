@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/stylelintrc.json",
+  "plugins": ["stylelint-no-unsupported-browser-features"],
+  "rules": {
+    "function-url-scheme-disallowed-list": [["http", "https", "file"], { "severity": "error" }],
+    "function-url-scheme-allowed-list": ["data"],
+    "declaration-no-important": [true, { "severity": "warning" }],
+    "color-named": ["never", { "severity": "warning" }],
+    "custom-property-no-missing-var-function": null,
+    "no-duplicate-selectors": null,
+    "no-duplicate-at-import-rules": null,
+    "declaration-block-no-duplicate-properties": [true, { "severity": "warning" }],
+    "shorthand-property-no-redundant-values": null,
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "severity": "warning",
+        "browsers": ["electron >= 39"],
+        "ignore": ["css-nesting", "css-cascade-layers"]
+      }
+    ],
+    "selector-pseudo-class-disallowed-list": [["has"], { "severity": "warning" }],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      { "ignorePseudoClasses": ["global", "local"], "severity": "warning" }
+    ],
+    "selector-pseudo-element-no-unknown": [true, { "severity": "warning" }],
+    "selector-type-no-unknown": [true, { "ignoreTypes": [], "severity": "warning" }],
+    "at-rule-no-unknown": [
+      true,
+      { "ignoreAtRules": ["layer", "property", "container"], "severity": "warning" }
+    ],
+    "unit-no-unknown": [true, { "severity": "warning" }],
+    "property-disallowed-list": [["all"], { "severity": "warning" }]
+  }
+}
