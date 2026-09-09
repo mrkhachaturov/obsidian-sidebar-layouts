@@ -297,6 +297,14 @@ describe('readButton', () => {
     ).toMatchObject({ kind: 'command', commandId: 'app:open-settings' });
   });
 
+  it('takes the default name and icon when the stored ones are empty', () => {
+    const stored = { id: 'l1', side: 'right', placement: 'header', saved: {} };
+    expect(readButton({ ...stored, name: '', icon: '' })).toMatchObject({
+      name: 'l1',
+      icon: 'layout-panel-left',
+    });
+  });
+
   it('defaults visibility to shown, so a hand-edited file does not lose buttons', () => {
     const stored = {
       id: 'l1',
