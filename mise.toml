@@ -50,5 +50,7 @@ depends = [
   "test:dead",
   "test:release",
   "test:styles",
+  "test:scanner",
+  "test:manifest",
   "build",
 ]
