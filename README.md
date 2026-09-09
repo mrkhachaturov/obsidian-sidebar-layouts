@@ -12,6 +12,11 @@ side and its live views alone.
 Source:
 [mrkhachaturov/obsidian-sidebar-layouts](https://github.com/mrkhachaturov/obsidian-sidebar-layouts).
 
+[![Check](https://github.com/mrkhachaturov/obsidian-sidebar-layouts/actions/workflows/check.yml/badge.svg)](https://github.com/mrkhachaturov/obsidian-sidebar-layouts/actions/workflows/check.yml)
+[![Security scan](https://github.com/mrkhachaturov/obsidian-sidebar-layouts/actions/workflows/codeql.yml/badge.svg)](https://github.com/mrkhachaturov/obsidian-sidebar-layouts/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/mrkhachaturov/obsidian-sidebar-layouts/badge)](https://securityscorecards.dev/viewer/?uri=github.com/mrkhachaturov/obsidian-sidebar-layouts)
+![Obsidian](https://img.shields.io/badge/Obsidian-1.13.0+-483699?logo=obsidian&style=flat-square)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Contents
