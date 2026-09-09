@@ -1,0 +1,33 @@
+---
+name: Obsidian checks
+
+# The directory runs these against a submission. Running them here means a
+# warning is answered in a pull request instead of on the published listing.
+"on":
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: obsidian-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Manifest, build and the scanner's own lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - uses: obsidianmd/obsidian-workflows@bd29a7e25a35626f32fbdda93c4189fe0dd3dcc0  # v1.1.0
+        with:
+          scanner-lint: true
