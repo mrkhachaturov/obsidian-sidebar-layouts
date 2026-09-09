@@ -287,6 +287,28 @@ describe('independent sidebar rows and overflow', () => {
     expect(h.root.querySelector('.sl-button-strip')).toBeNull();
   });
 
+  it('marks the element hosting a header strip, and unmarks it when the strip goes', () => {
+    const h = host();
+    const left = item('left');
+    const row = new ButtonRow(
+      h.plugin,
+      () => [left],
+      () => true,
+      'left',
+    );
+    row.start();
+    h.ready();
+    /* The class the stylesheet reads, in place of a relational selector on a
+     * container Obsidian rebuilds on every tab change. */
+    const strip = required(h.leftRoot.querySelector<HTMLElement>('.sl-button-strip'));
+    const hosting = required(strip.parentElement);
+    expect(hosting.classList.contains('sl-hosts-buttons')).toBe(true);
+    expect(hosting.classList.contains('sl-hosts-buttons-left')).toBe(true);
+    h.unload();
+    expect(hosting.classList.contains('sl-hosts-buttons')).toBe(false);
+    expect(hosting.classList.contains('sl-hosts-buttons-left')).toBe(false);
+  });
+
   it('moves overflow actions into a menu in current order and restores them when resized', () => {
     const h = host();
     let width = 60;

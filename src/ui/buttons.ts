@@ -55,6 +55,11 @@ export class ButtonRow {
   private readonly resizes = new Map<ButtonPlacement, ResizeObserver>();
   private readonly overflows = new Map<ButtonPlacement, HTMLButtonElement>();
   private readonly side: SidebarSide;
+  /* The element the header strip sits in, marked so the native tabs give up
+   * space to it. A class we set ourselves, rather than `:has()`: this container
+   * changes on every tab opened, closed or dragged, and a relational selector
+   * makes the browser re-evaluate the whole subtree each time. */
+  private host: HTMLElement | null = null;
 
   constructor(
     plugin: Plugin,
@@ -155,7 +160,22 @@ export class ButtonRow {
         if (parent?.firstElementChild !== strip) parent?.prepend(strip);
       } else if (anchor.nextElementSibling !== strip) anchor.after(strip);
     } else if (anchor.previousElementSibling !== strip) anchor.before(strip);
+    if (placement === 'header') this.markHost(strip.parentElement);
     return strip;
+  }
+
+  /** Moves the marker classes to the element now holding the header strip. */
+  private markHost(host: HTMLElement | null): void {
+    if (this.host === host) return;
+    this.clearHost();
+    this.host = host;
+    host?.classList.add('sl-hosts-buttons');
+    if (this.side === 'left') host?.classList.add('sl-hosts-buttons-left');
+  }
+
+  private clearHost(): void {
+    this.host?.classList.remove('sl-hosts-buttons', 'sl-hosts-buttons-left');
+    this.host = null;
   }
 
   private visibleItems(): readonly RowItem[] {
@@ -288,6 +308,7 @@ export class ButtonRow {
     for (const button of strip?.querySelectorAll('.sl-button') ?? []) button.remove();
     strip?.remove();
     this.strips.delete(placement);
+    if (placement === 'header') this.clearHost();
   }
 
   private removeAll(): void {

@@ -11,9 +11,9 @@
     "url": "git+https://github.com/mrkhachaturov/obsidian-sidebar-layouts.git"
   },
   "scripts": {
-    "dev": "mise run dev",
-    "build": "mise run build",
-    "test": "mise run test:unit",
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "test": "vitest run",
     "test:watch": "vitest",
     "postinstall": "node scripts/patch-dependencies.mjs"
   },
@@ -21,7 +21,6 @@
     "@eslint/js": "10.0.1",
     "@types/node": "24.13.3",
     "@vitest/coverage-v8": "5.0.0",
-    "builtin-modules": "5.3.0",
     "esbuild": "0.28.2",
     "eslint": "10.10.0",
     "eslint-plugin-obsidianmd": "0.4.2",

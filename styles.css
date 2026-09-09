@@ -188,21 +188,20 @@
   margin-inline-start: 0;
 }
 
-/* Native tabs give up space before our header buttons on either side. */
-.workspace-tab-header-container:has(> .sl-header-buttons) > .workspace-tab-header-container-inner {
+/* Native tabs give up space before our header buttons on either side. The class
+   is set where the strip is mounted; a relational selector would re-evaluate
+   this container on every tab opened, closed or dragged. */
+.sl-hosts-buttons > .workspace-tab-header-container-inner {
   min-width: 0;
   overflow: hidden;
 }
 
-.workspace-tab-header-container:has(> .sl-header-buttons)
-  > .workspace-tab-header-container-inner
-  > .workspace-tab-header {
+.sl-hosts-buttons > .workspace-tab-header-container-inner > .workspace-tab-header {
   flex-shrink: 0;
 }
 
 /* The left strip covers tabs from the opposite edge to the right strip. */
-.workspace-tab-header-container:has(> .sl-header-buttons[data-side="left"])
-> .workspace-tab-header-container-inner {
+.sl-hosts-buttons-left > .workspace-tab-header-container-inner {
   justify-content: flex-end;
 }
 
