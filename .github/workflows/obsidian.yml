@@ -28,6 +28,6 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - uses: obsidianmd/obsidian-workflows@bd29a7e25a35626f32fbdda93c4189fe0dd3dcc0  # v1.1.0
+      - uses: obsidianmd/obsidian-workflows@8167caed39664214d82c86fdfa32e06d8d55f61d  # v1.2.3
         with:
           scanner-lint: true
